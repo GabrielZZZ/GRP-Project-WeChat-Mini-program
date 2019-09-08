@@ -1,0 +1,38 @@
+<view wx:if="{{isHide}}">
+    <view wx:if="{{canIUse}}" >
+
+    <view style='margin-left: 10px'>
+      <text style='font-weight: bold; font-size: larger'>New Updates\n\n</text>
+
+      <text style='font-weight: bold'>Version 3.1.0 (2019.7.9):\n</text>
+      <text style='font-weight: bold'>- Adding Profile Photo Function: </text>
+      <text>users can choose their profile photos and be viewed in home pages & forum topics\n</text>
+
+      <text style='font-weight: bold'>- Bug Fixes.\n\n</text>
+
+
+      <text style='font-weight: bold'>Version 3.0.0 (2019.6.10):\n</text>
+      <text style='font-weight: bold'>- Adding Image Slides Function: </text>
+      <text>now there are image slides in topics and pages\n</text>
+      <text style='font-weight: bold'>- Increasing the Maximum Number of Images in Topics and Pages to Three.\n</text>
+      <text style='font-weight: bold'>- Bug Fixes.</text>
+    
+
+    </view>
+
+        <view class='header'>
+            <image src='../images/wxlogin.png'></image>
+        </view>
+ 
+        <view class='content'>
+            <view>Asking to get following permissions</view>
+            <text>Acquiring your public information (name, profile picture, etc.).</text>
+        </view>
+ 
+        <button class='bottom' type='primary' open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="bindGetUserInfo">
+          Authorized Login
+        </button>
+    </view>
+    <view wx:else>Please update your WeChat version.</view>
+</view>
+ 

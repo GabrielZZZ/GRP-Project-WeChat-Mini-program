@@ -1,0 +1,167 @@
+<view>
+
+	<view wx:if="{{!isShowImage}}">
+		<image style="width: {{imagewidth}}px; height: {{imageheight}}px;" src="../images/OLLE.png" bindload="imageLoad" />
+	</view>
+
+	<view wx:if="{{isShowImage}}">
+		<!--Image Swiper-->
+		<swiper
+		 indicator-dots="{{indicatorDots}}"
+		 autoplay="{{autoplay1}}"
+		 interval="{{interval}}"
+		 duration="{{duration}}"
+		 circular="true"
+		 style='width:100%; height:500rpx;'
+		>
+
+			<swiper-item>
+				<image
+				 src="{{imageUrl}}"
+				 style="width:100%;  height:500rpx"
+				 mode="aspectFill"
+				 bindtap="showBigger"
+				 data-src="{{imageUrl}}"
+				/>
+			</swiper-item>
+
+			<view wx:if="{{image2Available}}">
+				<swiper-item>
+					<image
+					 src="{{imageUrl2}}"
+					 style="width:100%;  height:500rpx"
+					 mode="aspectFill"
+					 bindtap="showBigger"
+					 data-src="{{imageUrl2}}"
+					/>
+				</swiper-item>
+			</view>
+
+			<view wx:if="{{image3Available}}">
+				<swiper-item>
+					<image
+					 src="{{imageUrl3}}"
+					 style="width:100%;  height:500rpx"
+					 mode="aspectFill"
+					 bindtap="showBigger"
+					 data-src="{{imageUrl3}}"
+					/>
+				</swiper-item>
+			</view>
+
+		</swiper>
+
+	</view>
+
+	<!-->
+	<view wx:if="{{isShowVideo}}" class='video_style'>
+		<video src="{{videoUrl}}" />
+	</view>
+	<-->
+
+		<view wx:if="{{isShowFile}}">
+
+			<button class='circle' bindtap='downloadFile'>
+				<view class="layout_horizontal">
+					<view style="width:30px; padding-left:0px">
+						<image
+						 mode='aspectFill'
+						 src='../images/word.png'
+						 plain='true'
+						 class='image'
+						/>
+					</view>
+
+					<view style="flex:1;width:100px;">
+						<text>Click Me to View</text>
+					</view>
+				</view>
+			</button>
+
+		</view>
+
+		<view style='padding-left: 10px;padding-right: 10px; '>
+
+			<text class='textLayout'> Subject: </text>
+			<text>{{title}}\n</text>
+			<text class='textLayout'> Description: \n</text>
+			<text style='text-align-last: justify;'>{{detail}}\n</text>
+
+			<text class='textLayout'> Deadline: </text>
+			<text>{{date}}\n</text>
+
+			<button bindtap="goToReplyTopic"> Reply </button>
+		</view>
+</view>
+
+<view wx:for="{{postedReply}}" wx:for-item="item" wx:for-index="index1">
+
+	<view class='myButton1'>
+
+		<view class="layout_horizontal">
+			<view style="width:130px; padding-left:10px">
+
+				<text>\n</text>
+
+				<image class="userinfo-avatar" src="{{item.photo}}" mode="scaleToFill" />
+
+				<text class='textLayout1'>{{item.username}}\n</text>
+				<text class='textLayout1'>Tag: </text>
+				<text>{{item.language}}\n</text>
+			</view>
+
+			<view style="flex:1;width:100px;">
+				<text class='textLayout'>Posts: \n</text>
+				<view style='padding-left: 15px'>
+
+					<view class="td-2" selectable="true" scroll-y="true">
+						<text class="th-text" disabled='true'  style="overflow-y:auto;overflow-x:scroll;" selectable="true">{{item.user_post}}\n\n</text>
+					</view>
+				</view>
+
+				<text class='textLayout'>Date: \n</text>
+				<text class='textLayout-post'>{{item.post_date}}\n</text>
+				<button bindtap='goToReplyPost' data-index1="{{index1}}"> Reply </button>
+				<button bindtap='getComments' data-index1="{{index1}}"> View Comments </button>
+
+			</view>
+		</view>
+	</view>
+
+	<view>
+		<!--Get Comments-->
+		<view wx:if="{{index1 == hold}}">
+			<view wx:for="{{forumReply}}" wx:for-item="forum_item" wx:for-index="forum_index">
+				<view class='myButton'>
+					<view class="layout_horizontal1">
+						<view style="width:130px; padding-left:10px">
+
+							<text>\n</text>
+
+							<image class="userinfo-avatar" src="{{forum_item.photo}}" mode="scaleToFill" />
+
+							<text class='textLayout1'>{{forum_item.username}}\n</text>
+							<text class='textLayout1'>Tag: </text>
+							<text>{{forum_item.language}}\n</text>
+						</view>
+
+						<view style="flex:1;width:100px;">
+							<text class='textLayout'>Posts: \n</text>
+							<view style='padding-left: 15px'>
+
+								<view class="td-2" selectable="true" scroll-y="true">
+									<text class="th-text" disabled='true'  style="overflow-y:auto;overflow-x:scroll;" selectable="true">{{forum_item.user_post}}\n\n</text>
+								</view>
+							</view>
+
+							<text class='textLayout'>Date: \n</text>
+							<text class='textLayout-post'>{{forum_item.post_date}}\n</text>
+						</view>
+					</view>
+				</view>
+			</view>
+		</view>
+	</view>
+
+</view>
+
